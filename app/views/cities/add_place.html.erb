@@ -1,0 +1,31 @@
+<h3> Add a new place </h3>
+<%= form_for @city, :url => update_add_new_place_city_path do |f| -%>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+        <% @place.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "City: " -%>
+    <%= @city.name -%>
+  </div>
+
+  <%= fields_for @place do |place_form| -%>
+    <div class="field">
+      <%= place_form.label :name, "Place: " -%><br />
+      <%= place_form.text_field :name -%>
+    </div>
+  <%- end -%>
+
+  <div class="actions">
+    <%= f.submit %> or <%= link_to "Back", city_path(@city) -%>
+  </div>
+<%- end -%>
+

@@ -1,0 +1,24 @@
+<h1>Filming movie</h1>
+
+<p id="notice"><%= notice %></p>
+
+<%= form_tag filming_movie_path do -%>
+  <div class="field">
+    <b>Movies</b><br />
+    <%= select_tag "movie_id", options_for_select([['--- select a movie ---', nil]] + list_movies_for_select) -%> 
+  </div>
+
+  <div class="field">
+    <b>Cities:</b><br />
+    <%= select_tag "city_id", options_for_select([['--- select a movie ---', nil]]) -%> 
+  </div>
+
+  <div class="field">
+    <b>Places</b><br />
+    <%= select_tag "place_id", options_for_select([['--- select a movie ---', nil]]) -%> 
+  </div>
+ 
+  <div class="actions">
+    <%= submit_tag "Filming" -%>
+  </div>
+<%- end -%>

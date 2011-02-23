@@ -1,0 +1,54 @@
+<h3> Add an existing place </h3>
+<%= form_for @movie, :url => update_add_place_movie_path, :method => "post" do |f| -%>
+  <div class="field">
+    <%= f.label :name, "Movie: " -%>
+    <%= @movie.name -%>
+  </div>
+
+  <%= fields_for @filming do |filming_form| -%>
+    <div class="field">
+      <%= filming_form.label :place_id -%><br />
+      <%= filming_form.select :place_id, options_for_select(list_places_for_select, 1) -%>
+    </div>
+  <%- end -%>
+
+  <div class="actions">
+    <%= f.submit %> or <%= link_to "Back", movie_path(@movie) -%>
+  </div>
+<%- end -%>
+
+<h3> Add a new place </h3>
+<%= form_for @movie, :url => update_add_new_place_movie_path do |f| -%>
+  <% if @place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+        <% @place.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= fields_for @place do |place_form| -%>
+    <div class="field">
+      <%= f.label :name, "Movie: " -%>
+      <%= @movie.name -%>
+    </div>
+
+    <div class="field">
+      <%= place_form.label :name, "Place: " -%><br />
+      <%= place_form.text_field :name -%>
+    </div>
+
+    <div class="field">
+      <%= place_form.label :city_id -%><br />
+      <%= place_form.select :city_id, options_for_select(list_cities_for_select, 1) -%>
+    </div>
+  <%- end -%>
+
+  <div class="actions">
+    <%= f.submit %> or <%= link_to "Back", movie_path(@movie) -%>
+  </div>
+<%- end -%>

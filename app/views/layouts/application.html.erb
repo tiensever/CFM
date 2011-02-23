@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= controller.controller_name -%> # <%= controller.action_name -%></title>
+    <%= stylesheet_link_tag :all %>
+    <%= javascript_include_tag 'jquery', 'rails', 'application' %>
+    <%= csrf_meta_tag %>
+  </head>
+
+  <body>
+    <%= render :partial => "layouts/main_navigation" -%>
+
+    <%= yield %>
+
+    <%= render :partial => "layouts/footer" -%>
+  </body>
+</html>

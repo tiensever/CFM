@@ -1,0 +1,38 @@
+<%= form_for(@city) do |f| %>
+  <% if @city.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@city.errors.count, "error") %> prohibited this city from being saved:</h2>
+
+      <ul>
+      <% @city.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%- if @city.new_record? -%>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+  <%- else -%>
+    <div class="field">
+      <%= f.label :name, "City: " %>
+      <%= @city.name -%> 
+    <div>
+  <%- end -%>
+
+  <%- unless @city.new_record? -%>
+    <div class="field">
+      <%= fields_for @hosting do |hosting_form| -%>
+        <%= hosting_form.label :movie_id -%><br />
+        <%= hosting_form.select :movie_id, options_for_select(list_movies_for_select, 1) -%>
+      <%- end -%>
+    </div>
+  <%- end -%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

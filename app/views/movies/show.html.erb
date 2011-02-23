@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Movie:</b>
+  <%= @movie.name %>
+</p>
+
+<p>
+  <b>Cities:</b>
+  <%= @movie.cities.map(&:name).join(', ') -%>
+</p>
+
+<p>
+  <b>Places:</b>
+  <%= @movie.places.map(&:name).join(', ') -%>
+</p>
+
+<%= link_to 'Add place', add_place_movie_path(@movie) -%> |
+<%= link_to 'Back', movies_path %>
