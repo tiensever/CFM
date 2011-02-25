@@ -1,6 +1,8 @@
 Movies::Application.routes.draw do
   get "drill_down/index"
-  match 'drill_down/filming_movie' => 'drill_down#filming_movie', :as => 'filming_movie'
+  match 'drill_down/movie_filming_movie' => 'drill_down#movie_filming_movie', :as => 'movie_filming_movie'
+  match 'drill_down/city_filming_movie' => 'drill_down#city_filming_movie', :as => 'city_filming_movie'
+  match 'drill_down/place_filming_movie' => 'drill_down#place_filming_movie', :as => 'place_filming_movie'
 
   resources :places
 

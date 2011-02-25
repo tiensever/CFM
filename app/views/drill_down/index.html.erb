@@ -2,23 +2,75 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= form_tag filming_movie_path do -%>
-  <div class="field">
-    <b>Movies</b><br />
-    <%= select_tag "movie_id", options_for_select([['--- select a movie ---', nil]] + list_movies_for_select) -%> 
-  </div>
+<table border="0" cellpadding="30">
+  <tr>
+    <td>
+      <%= form_tag movie_filming_movie_path do -%>
+        <div class="field">
+          <b>Movies</b><br />
+          <%= select_tag "movie_id", options_for_select([['--- select a movie ---', nil]] + list_movies_for_select) -%> 
+        </div>
 
-  <div class="field">
-    <b>Cities:</b><br />
-    <%= select_tag "city_id", options_for_select([['--- select a movie ---', nil]]) -%> 
-  </div>
+        <div class="field">
+          <b>Cities</b><br />
+          <%= select_tag "movie_city_id", options_for_select([['--- select a city ---', nil]]) -%> 
+        </div>
 
-  <div class="field">
-    <b>Places</b><br />
-    <%= select_tag "place_id", options_for_select([['--- select a movie ---', nil]]) -%> 
-  </div>
- 
-  <div class="actions">
-    <%= submit_tag "Filming" -%>
-  </div>
-<%- end -%>
+        <div class="field">
+          <b>Places</b><br />
+          <%= select_tag "movie_place_id", options_for_select([['--- select a place ---', nil]]) -%> 
+        </div>
+       
+        <div class="actions">
+          <%= submit_tag "Filming" -%>
+        </div>
+      <%- end -%>
+    </td>
+
+    <td>
+      <%= form_tag city_filming_movie_path do -%>
+        <div class="field">
+          <b>Cities</b><br />
+          <%= select_tag "city_id", options_for_select([['--- select a city ---', nil]] + list_cities_for_select) -%> 
+        </div>
+
+        <div class="field">
+          <b>Places</b><br />
+          <%= select_tag "city_place_id", options_for_select([['--- select a place ---', nil]]) -%> 
+        </div>
+       
+        <div class="field">
+          <b>Movies</b><br />
+          <%= select_tag "city_movie_id", options_for_select([['--- select a movie ---', nil]]) -%> 
+        </div>
+
+        <div class="actions">
+          <%= submit_tag "Filming" -%>
+        </div>
+      <%- end -%>
+    </td>
+
+    <td>
+      <%= form_tag place_filming_movie_path do -%>
+        <div class="field">
+          <b>Places</b><br />
+          <%= select_tag "place_id", options_for_select([['--- select a place ---', nil]] + list_places_for_select) -%> 
+        </div>
+       
+        <div class="field">
+          <b>Cities</b><br />
+          <%= select_tag "place_city_id", options_for_select([['--- select a city ---', nil]]) -%> 
+        </div>
+
+        <div class="field">
+          <b>Movies</b><br />
+          <%= select_tag "place_movie_id", options_for_select([['--- select a movie ---', nil]]) -%> 
+        </div>
+
+        <div class="actions">
+          <%= submit_tag "Filming" -%>
+        </div>
+      <%- end -%>
+    </td>
+  </tr>
+</table>
