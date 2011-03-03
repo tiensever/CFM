@@ -6,17 +6,14 @@
 
 module ApplicationHelper
   def list_cities_for_select
-    cities = City.all.collect { |c| [c.name, c.id] }
-    cities
+    City.all.collect { |c| [c.name, c.id] }
   end
 
   def list_movies_for_select
-    movies = Movie.all.collect { |m| [m.name, m.id] }
-    movies
+    Movie.all.collect { |m| [m.name, m.id] }
   end
 
   def list_places_for_select
-    places = Place.all.collect { |p| [p.name, p.id] }
-    places 
+    Place.all.collect { |p| [p.name, p.id] }
   end
 end
