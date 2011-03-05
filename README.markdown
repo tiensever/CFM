@@ -50,6 +50,7 @@ After a PLACE exists, an different MOVIE can be associated to it
     In London, it was filmed at the following Places (Piccadilly Circus, St John Street) 
     In LA, it was filmed at the following Places (North Hollywod) 
 
+             
 
     "Pineapple Express" (MOVIE) was filmed in Glendale California, LA, Downey California, Culver City California (CITIES). 
     Have no data yet for where exactly filmed in Glendale (no PLACE for this movie in Glendale) 
