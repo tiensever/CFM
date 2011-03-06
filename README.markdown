@@ -24,6 +24,9 @@ After a MOVIE exists, a CITY can be associated to it (and vice versa)
 After a PLACE exists, an different MOVIE can be associated to it 
 
 ### FEATURES TO BE IMPLEMENTED
+
+#### BASIC
+
 - App that supports necessary assocations/relations above 
 - Page to Add MOVIE. MOVIE just has a Name (text) 
 - Page to Add a CITY. CITY has a Name (text) 
@@ -36,11 +39,17 @@ After a PLACE exists, an different MOVIE can be associated to it
 - When viewing a CITY, need to see all of MOVIES hosted in that CITY and a list of 10 PLACES within that CITY 
 - When viewing a PLACE, seeing the MOVIES being hosted there and CITY that the place lives within 
 - When looking at a specific MOVIE, an "add Place" button is provided which the user can then do the following: 
- + Add a new PLACE which the user mut provide PLACE name and associated CITY 
- + Select an existing PLACE to associate to. 
+  - Add a new PLACE which the user mut provide PLACE name and associated CITY 
+  - Select an existing PLACE to associate to. 
 - When looking at a specific CITY, an "add Place" button is provided which the user can then do the following: 
- + Add a new PLACE which the user mut provide PLACE name 
+  - Add a new PLACE which the user mut provide PLACE name 
 - Broad drill downs, user can select MOVIE, then select a CITY associated to that MOVIE to view, then select a PLACE used in that CITY for filming that MOVIE. 
+
+#### GOOGLE MAP INTEGRATED
+
+View Movie - Brings map up with Cities for that movie 
+View City - If no movie is selected, shows all places for that city, if a movie is selected, shows places for that movie in that city 
+View Place - Shows location of that place.  If it was drilled down into from a movie, displays movie name and a section that shows "Other Movies Filmed Here..." which has the list of other movies (if any) filmed at that place.  If user goes directly to that place, the "Other Movies Filmed Here..." title changes to "Movies Filmed Here" and lists the movies filmed there.  In both cases, the city name is also displayed. 
 
 ## EXAMPLE
 
