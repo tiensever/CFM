@@ -1,9 +1,7 @@
 # OVERVIEW
 This is a very first phase of building a Cinema Filming Management system, which would be a replacement for Megastar current website.
 
-## INTRODUCTION
-
-### DATABASE STRUCTURE
+## DATABASE STRUCTURE
 In this phase I implemented 3 models:
 MOVIE, CITY, PLACE 
 
@@ -23,9 +21,9 @@ PLACES when added must be associated to a CITY, and a MOVIE
 After a MOVIE exists, a CITY can be associated to it (and vice versa) 
 After a PLACE exists, an different MOVIE can be associated to it 
 
-### FEATURES TO BE IMPLEMENTED
+## FEATURES TO BE IMPLEMENTED
 
-#### BASIC
+### BASIC
 
 - App that supports necessary assocations/relations above 
 - Page to Add MOVIE. MOVIE just has a Name (text) 
@@ -45,7 +43,7 @@ After a PLACE exists, an different MOVIE can be associated to it
   - Add a new PLACE which the user mut provide PLACE name 
 - Broad drill downs, user can select MOVIE, then select a CITY associated to that MOVIE to view, then select a PLACE used in that CITY for filming that MOVIE. 
 
-#### GOOGLE MAP INTEGRATED
+### GOOGLE MAP INTEGRATED
 
 View Movie - Brings map up with Cities for that movie 
 
