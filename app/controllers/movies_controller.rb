@@ -10,6 +10,15 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
 
+    @map = Cartographer::Gmap.new( 'map' )
+    @map.zoom = :bound
+    @map.icons << Cartographer::Gicon.new
+
+    marker1 = Cartographer::Gmarker.new(:name=> "taj_mahal", :marker_type => "Building", :position => [27.173006,78.042086])
+    marker2 = Cartographer::Gmarker.new(:name=> "raj_bhawan", :marker_type => "Building", :position => [28.614309,77.201353])
+    @map.markers << marker1
+    @map.markers << marker2
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @movies }
