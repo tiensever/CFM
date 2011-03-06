@@ -48,8 +48,11 @@ After a PLACE exists, an different MOVIE can be associated to it
 #### GOOGLE MAP INTEGRATED
 
 View Movie - Brings map up with Cities for that movie 
+
 View City - If no movie is selected, shows all places for that city, if a movie is selected, shows places for that movie in that city 
+
 View Place - Shows location of that place.  If it was drilled down into from a movie, displays movie name and a section that shows "Other Movies Filmed Here..." which has the list of other movies (if any) filmed at that place.  If user goes directly to that place, the "Other Movies Filmed Here..." title changes to "Movies Filmed Here" and lists the movies filmed there.  In both cases, the city name is also displayed. 
+
 
 ## EXAMPLE
 
