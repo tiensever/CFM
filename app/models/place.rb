@@ -9,7 +9,7 @@ include Geokit::Geocoders
 
 class Place < ActiveRecord::Base
   belongs_to :city
-  has_many   :filmings
+  has_many   :filmings, :dependent => :destroy
   has_many   :movies, :through => :filmings, :uniq => true
 
   validates_associated    :filmings

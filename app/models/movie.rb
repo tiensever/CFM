@@ -5,9 +5,9 @@
 #
 
 class Movie < ActiveRecord::Base
-  has_many :hostings
+  has_many :hostings, :dependent => :destroy
   has_many :cities, :through => :hostings, :uniq => true
-  has_many :filmings
+  has_many :filmings, :dependent => :destroy
   has_many :places, :through => :filmings, :uniq => true
 
   validates_associated    :hostings

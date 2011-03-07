@@ -8,9 +8,9 @@ require 'geokit'
 include Geokit::Geocoders
 
 class City < ActiveRecord::Base
-  has_many :hostings
+  has_many :hostings, :dependent => :destroy
   has_many :movies, :through => :hostings, :uniq => true
-  has_many :places
+  has_many :places, :dependent => :destroy
 
   validates_associated    :hostings
   validates_presence_of   :name

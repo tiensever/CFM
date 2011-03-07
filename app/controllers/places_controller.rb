@@ -69,6 +69,7 @@ class PlacesController < ApplicationController
   # PUT /places/1.xml
   def update
     @place = Place.find(params[:id])
+    Filming.find(:first, :conditions => ["place_id = ?", @place.id]).destroy
     @filming = @place.filmings.build(:movie_id => params[:filming][:movie_id])
 
     respond_to do |format|
