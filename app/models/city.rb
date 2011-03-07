@@ -19,18 +19,16 @@ class City < ActiveRecord::Base
   before_save :add_ll
 
   def self.find_associated_places(id)
-    return [['--- select a place ---', nil]] if id.blank?
     city = find_by_id(id)
+    return [] if city.nil?
     places = city.places.map { |p| [p.name, p.id] }
-    return [['--- select a place ---', nil]] if places.empty? 
     places
   end
 
   def self.find_associated_movies(id)
-    return [['--- select a movie ---', nil]] if id.blank?
     city = find_by_id(id)
+    return [] if city.nil?
     movies = city.movies.map { |m| [m.name, m.id] }
-    return [['--- select a movie ---', nil]] if movies.empty? 
     movies
   end
 

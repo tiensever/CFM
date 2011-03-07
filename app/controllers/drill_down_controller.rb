@@ -6,6 +6,26 @@
 
 class DrillDownController < ApplicationController
   def index
+    case params[:drilldown]
+      when 'movie' then
+        logger.info "Movie drilldown"
+        movie_id, city_id = params[:movie_id], params[:movie_city_id]
+        if params[:movie_place_id].blank?
+          places = Place.get_places_for_movie_in_city(movie_id, city_id)
+          @map = Place.get_places_map(places)
+          @map_title = "Places for movie <b>#{Movie.find_by_id(movie_id).name}</b> in city <b>#{City.find_by_id(city_id).name}</b>:"
+        else 
+          place = Place.find_by_id(params[:movie_place_id])
+          @map = place.get_place_map
+          @map_title = "<b>Other Movies Filmed Here:</b> " << (place.movies.map(&:name).reject { |m| m == Movie.find_by_id(params[:movie_id]).name }).join(',')
+        end
+      when 'city' then
+        logger.info "City drilldown"
+      when 'place' then
+        logger.info "Place drilldown"
+      else
+        logger.info "just load the drilldown index"
+    end
   end
 
   ### movie drill drown

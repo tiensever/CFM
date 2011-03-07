@@ -16,10 +16,9 @@ class Movie < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def self.find_associated_cities(id)
-    return [['--- select a city ---', nil]] if id.blank?
     movie = find_by_id(id)
+    return [] if movie.nil?
     cities = movie.cities.map { |c| [c.name, c.id] }
-    return [['--- select a city ---', nil]] if cities.empty? 
     cities
   end
 

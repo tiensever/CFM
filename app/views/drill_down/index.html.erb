@@ -1,3 +1,4 @@
+<%=raw Cartographer::Header.new.to_s %>
 <h1>Filming movie</h1>
 
 <p id="notice"><%= notice %></p>
@@ -8,17 +9,17 @@
       <%= form_tag movie_filming_movie_path do -%>
         <div class="field">
           <b>Movies</b><br />
-          <%= select_tag "movie_id", options_for_select([['--- select a movie ---', nil]] + list_movies_for_select) -%> 
+          <%= select_tag "movie_id", options_for_select([['--- select a movie ---', nil]] + list_movies_for_select, params[:movie_id].to_i) -%> 
         </div>
 
         <div class="field">
           <b>Cities</b><br />
-          <%= select_tag "movie_city_id", options_for_select([['--- select a city ---', nil]]) -%> 
+          <%= select_tag "movie_city_id", options_for_select([['--- select a city ---', nil]] + list_cities_assoc_movie_for_select(params[:movie_id]), params[:movie_city_id].to_i) -%> 
         </div>
 
         <div class="field">
           <b>Places</b><br />
-          <%= select_tag "movie_place_id", options_for_select([['--- select a place ---', nil]]) -%> 
+          <%= select_tag "movie_place_id", options_for_select([['--- select a place ---', nil]] + list_places_assoc_city_for_select(params[:movie_city_id]), params[:movie_place_id].to_i) -%> 
         </div>
        
         <div class="actions">
@@ -74,3 +75,12 @@
     </td>
   </tr>
 </table>
+
+<%- unless @map.blank? -%>
+  <%=raw @map_title -%><br /><br />
+  <div style="width:700px;height:400px;" id="map" > [Map] </div>
+<%- end -%>
+
+<%=raw @map.to_html unless @map.blank? -%>
+
+<%= hidden_field_tag "drilldown_url", drill_down_index_url -%>

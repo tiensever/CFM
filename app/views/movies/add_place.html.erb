@@ -7,7 +7,7 @@
 
   <%= fields_for @filming do |filming_form| -%>
     <div class="field">
-      <%= filming_form.label :place_id -%><br />
+      <%= filming_form.label :place_id, "Place: " -%><br />
       <%= filming_form.select :place_id, options_for_select(list_places_for_select, 1) -%>
     </div>
   <%- end -%>

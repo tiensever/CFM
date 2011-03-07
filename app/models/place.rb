@@ -20,15 +20,15 @@ class Place < ActiveRecord::Base
   before_save :add_ll
 
   def self.find_associated_movies(id)
-    return [['--- select a movie ---', nil]] if id.blank?
     place = find_by_id(id)
+    return [] if place.nil?
     movies = place.movies.map { |m| [m.name, m.id] }
     movies
   end
 
   def self.find_associated_cities(id)
-    return [['--- select a city ---', nil]] if id.blank?
     place = find_by_id(id)
+    return [] if place.nil?
     [[place.city.name, place.city.id]]
   end
 
@@ -58,6 +58,25 @@ class Place < ActiveRecord::Base
     map.icons << Cartographer::Gicon.new
     marker = Cartographer::Gmarker.new(:name=> 'name', :marker_type => "Building", :position => [self.lat, self.lng])
     map.markers << marker
+
+    map
+  end
+
+  def self.get_places_for_movie_in_city(movie_id, city_id)
+    movie = Movie.find_by_id(movie_id)
+    city = City.find_by_id(city_id)
+    (city.places.collect { |place| place if movie.places.map(&:id).include? place.id }).compact
+  end
+
+  def self.get_places_map(places)
+    map = Cartographer::Gmap.new('map')
+    map.zoom = :bound
+    map.icons << Cartographer::Gicon.new
+
+    for place in places
+      marker = Cartographer::Gmarker.new(:name=> 'placename', :marker_type => "Building", :position => [place.lat, place.lng])
+      map.markers << marker
+    end
 
     map
   end

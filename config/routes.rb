@@ -3,6 +3,7 @@ Movies::Application.routes.draw do
   match 'drill_down/movie_filming_movie' => 'drill_down#movie_filming_movie', :as => 'movie_filming_movie'
   match 'drill_down/city_filming_movie' => 'drill_down#city_filming_movie', :as => 'city_filming_movie'
   match 'drill_down/place_filming_movie' => 'drill_down#place_filming_movie', :as => 'place_filming_movie'
+  match 'show_places_for_movie_in_city' => 'drill_down#show_places_for_movie_in_city'
 
   resources :places
 
