@@ -10,12 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222140657) do
+ActiveRecord::Schema.define(:version => 20110307052514) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "filmings", :force => true do |t|
@@ -43,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20110222140657) do
     t.integer  "city_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lng"
   end
 
 end

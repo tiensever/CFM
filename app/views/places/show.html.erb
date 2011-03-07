@@ -1,3 +1,4 @@
+<%=raw Cartographer::Header.new.to_s %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -15,4 +16,10 @@
   <%= @place.city.name %>
 </p>
 
+<br />
+<div style="width:700px;height:400px;" id="map" > [Map] </div>
+<br />
+
 <%= link_to 'Back', places_path %>
+
+<%=raw @map.to_html %>

@@ -1,3 +1,4 @@
+<%=raw Cartographer::Header.new.to_s %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -15,5 +16,11 @@
   <%= @city.places.map(&:name)[0..9].join(', ') -%>
 </p>
 
+<br />
+<div style="width:700px;height:400px;" id="map" > [Map] </div>
+<br />
+
 <%= link_to 'Add place', add_place_city_path(@city) -%> |
 <%= link_to 'Back', cities_path %>
+
+<%=raw @map.to_html %>

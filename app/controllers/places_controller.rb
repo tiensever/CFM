@@ -20,6 +20,7 @@ class PlacesController < ApplicationController
   # GET /places/1.xml
   def show
     @place = Place.find(params[:id])
+    @map = @place.get_place_map
 
     respond_to do |format|
       format.html # show.html.erb
