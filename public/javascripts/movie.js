@@ -1,3 +1,9 @@
+//
+// Giang Nguyen 
+// http://xiga.info
+// Feb - 2011
+//
+
 Movie = function() {
   var initializeObservers = function() {
     // function for Movie drill down
