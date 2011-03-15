@@ -7,10 +7,10 @@
 class DrillDownController < ApplicationController
   def index
     case params[:drilldown]
-      when 'movie' then
+      when 'movie'
         logger.info "Movie drilldown"
-        movie_id, city_id = params[:movie_id], params[:movie_city_id]
-        if params[:movie_place_id].blank?
+        movie_id, city_id, place_id = params[:movie_id], params[:movie_city_id], params[:movie_place_id]
+        if place_id.blank?
           places = Place.get_places_for_movie_in_city(movie_id, city_id)
           @map = Place.get_places_map(places)
           @map_title = "Places for movie <b>#{Movie.find_by_id(movie_id).name}</b> in city <b>#{City.find_by_id(city_id).name}</b>:"
@@ -19,10 +19,36 @@ class DrillDownController < ApplicationController
           @map = place.get_place_map
           @map_title = "<b>Other Movies Filmed Here:</b> " << (place.movies.map(&:name).reject { |m| m == Movie.find_by_id(params[:movie_id]).name }).join(',')
         end
-      when 'city' then
+      when 'city'
         logger.info "City drilldown"
-      when 'place' then
+        city_id, place_id, movie_id = params[:city_id], params[:city_place_id], params[:city_movie_id]
+        if place_id.blank?
+          places = City.find_by_id(city_id).places
+          @map = Place.get_places_map(places)
+          @map_title = "Places in city <b>#{City.find_by_id(city_id).name}</b>"
+        else
+          place = Place.find_by_id(place_id)
+          @map = place.get_place_map
+          @map_title = "Movies Filmed Here: " << place.movies.map(&:name).join(',')
+        end
+      when 'place'
         logger.info "Place drilldown"
+        place_id, city_id, movie_id = params[:place_id], params[:place_city_id], params[:place_movie_id]
+        if city_id.blank?
+          place = Place.find_by_id(place_id)
+          @map = place.get_place_map
+          @map_title = ""
+        else 
+          if movie_id.blank?
+            places = City.find_by_id(city_id).places
+            @map = Place.get_places_map(places)
+            @map_title = "Places in city <b>#{City.find_by_id(city_id).name}</b>"
+          else
+            places = Place.get_places_for_movie_in_city(movie_id, city_id)
+            @map = Place.get_places_map(places)
+            @map_title = "Places for movie <b>#{Movie.find_by_id(movie_id).name}</b> in city <b>#{City.find_by_id(city_id).name}</b>:"
+          end
+        end
       else
         logger.info "just load the drilldown index"
     end

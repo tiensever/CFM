@@ -38,9 +38,7 @@ Movie = function() {
     // function for City drill down
     $('#city_id').bind('change', function() {
       $.ajax({ url: '/drill_down/city_associated_places',
-               data: {
-                       id: $(this).val(),
-                     },
+               data: { id: $(this).val() },
                success: function(data) {
                  $('#city_place_id').html(data);  
                  if ($('#city_id').val() == "") {
@@ -50,43 +48,61 @@ Movie = function() {
                               $('#city_movie_id').html(data2);  
                             }
                           });
+                 } else {
+                   window.location = $('#drilldown_url').val() + '?drilldown=city&city_id=' + $('#city_id').val();
                  }
                }
              });
     });
 
     $('#city_place_id').bind('change', function() {
-      $.ajax({ url: '/drill_down/city_associated_movies',
-               data: { id: $(this).val() },
-               success: function(data) {
-                 $('#city_movie_id').html(data);  
-               }
-             });
+      if ($('#city_place_id').val() == "") {
+        $.ajax({ url: '/drill_down/city_associated_movies',
+                 data: { id: $(this).val() },
+                 success: function(data) {
+                   $('#city_movie_id').html(data);  
+                 }
+               });
+      } else {
+        window.location = $('#drilldown_url').val() + '?drilldown=city&city_id=' + $('#city_id').val() + '&city_place_id=' + $('#city_place_id').val();  
+      }
     });
 
     // function for Place drill down
     $('#place_id').bind('change', function() {
-      $.ajax({ url: 'place_associated_cities',
-               data: { id: $(this).val() },
-               success: function(data) {
-                 $('#place_city_id').html(data);  
-                 $.ajax({ url: 'place_associated_movies',
-                          data: { id: $('#place_city_id').val() },
-                          success: function(data2) {
-                            $('#place_movie_id').html(data2);  
-                          }
-                        });
-               }
-             });
+      if ($('#place_id').val() == "") {
+        $.ajax({ url: 'place_associated_cities',
+                 data: { id: $(this).val() },
+                 success: function(data) {
+                   $('#place_city_id').html(data);  
+                   $.ajax({ url: 'place_associated_movies',
+                            data: { id: $('#place_city_id').val() },
+                            success: function(data2) {
+                              $('#place_movie_id').html(data2);  
+                            }
+                          });
+                 }
+               });
+      } else {
+        window.location = $('#drilldown_url').val() + '?drilldown=place&place_id=' + $('#place_id').val();
+      }
     });
 
     $('#place_city_id').bind('change', function() {
-      $.ajax({ url: 'place_associated_movies',
-               data: { id: $(this).val() },
-               success: function(data) {
-                 $('#place_movie_id').html(data);  
-               }
-             });
+      if ($('#place_city_id').val() == "") {
+        $.ajax({ url: 'place_associated_movies',
+                 data: { id: $(this).val() },
+                 success: function(data) {
+                   $('#place_movie_id').html(data);  
+                 }
+               });
+      } else {
+        window.location = $('#drilldown_url').val() + '?drilldown=place&place_id=' + $('#place_id').val() + '&place_city_id=' + $('#place_city_id').val();
+      }
+    });
+
+    $('#place_movie_id').bind('change', function() {
+      window.location = $('#drilldown_url').val() + '?drilldown=place&place_id=' + $('#place_id').val() + '&place_city_id=' + $('#place_city_id').val() + '&place_movie_id=' + $('#place_movie_id').val();
     });
   }
 
