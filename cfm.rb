@@ -1,12 +1,12 @@
-#require 'omniauth/oauth'
+require 'sinatra'
+require 'omniauth/oauth'
 
-#enable :sessions
+enable :sessions
 
 #Here you have to put your own Application ID and Secret
 APP_ID = "171689842883457"
 APP_SECRET = "47e8fda6e48f7ddacafdb70707327b97"
 
-=begin
 use OmniAuth::Builder do
   provider :facebook, APP_ID, APP_SECRET, { :scope => 'email, status_update, publish_stream' }
 end
@@ -42,4 +42,3 @@ def clear_session
   session['fb_token'] = nil
   session['fb_error'] = nil
 end
-=end
