@@ -9,9 +9,6 @@ gem 'mysql2'
 gem 'geokit'
 gem 'json'
 gem 'jquery-rails'
-#gem 'oa-oauth', '0.1.6'
-gem 'omniauth'
-gem 'sinatra'
 
 # Use unicorn as the web server
 # gem 'unicorn'
